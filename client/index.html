@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Decentralized Election Application</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script src="./node_modules/web3/dist/web3.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <!-- header here -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a
+            class="navbar-brand"
+            href="#"
+            style="font-weight: bolder; font-family: sans-serif"
+            >Election Commission of India</a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  style="font-weight: bolder; font-family: sans-serif"
+                  aria-current="page"
+                  href="#"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="#"
+                  style="font-weight: bolder; font-family: sans-serif"
+                  >About</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="font-weight: bolder; font-family: sans-serif"
+                  href="Contact.html"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex mx-5">
+          <button
+            class="btn btn-primary mx-2"
+            data-bs-toggle="modal"
+            data-bs-target="#signupModal"
+          >
+            Signup
+          </button>
+          <button
+            class="btn btn-success"
+            data-bs-toggle="modal"
+            data-bs-target="#loginModal"
+          >
+            LogIn
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- signup modal -->
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="signupModal"
+      tabindex="-1"
+      aria-labelledby="signupModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <main>
+                <div class="py-5 text-center">
+                  <img
+                    class="d-block mx-auto mb-4"
+                    src="https://svgsilh.com/svg/714772.svg"
+                    alt=""
+                    width="72"
+                    height="57"
+                  />
+                  <h2>SignUp form</h2>
+                  <p class="lead">
+                    Below is an signup form built for the citizens of India who
+                    are eligible for Voting.
+                  </p>
+                </div>
+
+                <div class="row g-5">
+                  <!--  -->
+                  <div class="col-md-7 col-lg-8" style="margin: auto">
+                    <form class="needs-validation" id="signupForm">
+                      <div class="row g-3">
+                        <div class="col-sm-6">
+                          <label for="firstName" class="form-label"
+                            >First name</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="firstName"
+                            name="firstName"
+                            placeholder="First Name"
+                          />
+                        </div>
+
+                        <div class="col-sm-6">
+                          <label for="lastName" class="form-label"
+                            >Last name</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="lastName"
+                            name="lastName"
+                            placeholder="Last Name"
+                          />
+                        </div>
+
+                        <div class="col-12">
+                          <label for="email" class="form-label">Email</label>
+                          <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            placeholder="Email"
+                          />
+                        </div>
+
+                        <div class="col-12">
+                          <label for="userName" class="form-label"
+                            >UserName</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="userName"
+                            name="userName"
+                            placeholder="Username"
+                          />
+                        </div>
+
+                        <div class="col-12">
+                          <label for="password" class="form-label"
+                            >Password</label
+                          >
+                          <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            name="password"
+                            placeholder="Password"
+                          />
+                        </div>
+
+                        <div class="col-12">
+                          <label for="address" class="form-label"
+                            >Address</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="address"
+                            name="address"
+                            placeholder="Address"
+                          />
+                        </div>
+
+                        <div class="col-md-5">
+                          <label for="country" class="form-label"
+                            >Country</label
+                          >
+                          <select
+                            class="form-select"
+                            id="country"
+                            name="country"
+                          >
+                            <option>Choose ...</option>
+                            <option value="India">India</option>
+                          </select>
+                        </div>
+
+                        <div class="col-md-4">
+                          <label for="state" class="form-label">State</label>
+                          <select class="form-select" id="state" name="state">
+                            <option value="">Choose...</option>
+                            <option>Maharashtra</option>
+                            <option>Assam</option>
+                            <option>Madhya Pradesh</option>
+                            <option>Arunachal Pradesh</option>
+                            <option>Bihar</option>
+                          </select>
+                          <div class="invalid-feedback">
+                            Please provide a valid state.
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                          <label for="zip" class="form-label">Pincode</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="pinCode"
+                            name="pinCode"
+                            placeholder="Pincode"
+                          />
+                        </div>
+                      </div>
+                      <hr class="my-4" />
+
+                      <button
+                        class="w-100 btn btn-primary btn-lg"
+                        type="submit"
+                      >
+                        SignUp
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </main>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- login modal -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <form id="loginForm" method="POST">
+                <label for="username" class="form-label"
+                  >UserName</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  name="username"
+                  placeholder="Username"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  rows="3"
+                  placeholder="Password"
+                />
+                <button class="btn btn-success my-3 btn-lg">Login</button>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- carosuel -->
+    <div
+      id="carouselExampleIndicators"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img
+            src="https://source.unsplash.com/1400x400/?technology"
+            class="d-block w-100"
+            alt="..."
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="https://source.unsplash.com/1400x400/?election"
+            class="d-block w-100"
+            alt="..."
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="https://source.unsplash.com/1400x400/?trading"
+            class="d-block w-100"
+            alt="..."
+          />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- container for cards here -->
+    <div class="box p-5">
+      <div
+        class="row row-cols-1 row-cols-md-5 g-4 container"
+        style="margin: auto"
+      >
+        <div class="col">
+          <div class="card">
+            <img
+              src="https://bit.ly/3Eo0gzV"
+              style="min-height: 10rem"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">ShivSena</h5>
+              <p class="card-text">
+                Shiv Sena is a right-wing Marathi regionalist and
+                ultranationalist political party in India founded in ...
+                <button
+                  id="id_shivSenaBtn"
+                  class="btn btn-primary"
+                  type="submit"
+                  style="font-weight: bolder; font-family: sans-serif"
+                >
+                  Vote Me
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card">
+            <img
+              src="https://bit.ly/3Jfp0Ou"
+              style="min-height: 10rem"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">BJP</h5>
+              <p class="card-text">
+                The Bharatiya Janata Party is one of two major political parties
+                in India, along with the Indian ...
+              </p>
+              <button
+                id="id_BjpBtn"
+                style="font-weight: bolder; font-family: sans-serif"
+                class="btn btn-primary"
+                type="submit"
+              >
+                Vote Me
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card">
+            <img
+              src="https://bit.ly/3Eq7h3r"
+              style="min-height: 10rem"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">BSP</h5>
+              <p class="card-text">
+                The Bahujan Samaj Party is a national level political party in
+                India that was formed to represent ...
+              </p>
+              <button
+                id="id_BspBtn"
+                style="font-weight: bolder; font-family: sans-serif"
+                class="btn btn-primary"
+                type="submit"
+              >
+                Vote Me
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card">
+            <img
+              src="https://bit.ly/3JgoiR1"
+              style="min-height: 10rem"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Congress</h5>
+              <p class="card-text">
+                The Indian National Congress is a political party in India with
+                widespread roots...
+              </p>
+              <button
+                id="id_CongressBtn"
+                style="font-weight: bolder; font-family: sans-serif"
+                class="btn btn-primary"
+                type="submit"
+              >
+                Vote Me
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card">
+            <img
+              src="https://bit.ly/3Fw8wPR"
+              style="min-height: 10rem"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Aam Aadmi Party</h5>
+              <p class="card-text">
+                Aam Aadmi Party is a political party in India, founded in 2012.
+                It styles itself as an alternative ...
+              </p>
+              <button
+                id="id_AapBtn"
+                style="font-weight: bolder; font-family: sans-serif"
+                class="btn btn-primary"
+                type="submit"
+              >
+                Vote Me
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // hide all the vote buttons
+      const hideShivSenaBtn = document.querySelector("#id_shivSenaBtn");
+      hideShivSenaBtn.style.display = "none";
+
+      const hideBjpBtn = document.querySelector("#id_BjpBtn");
+      hideBjpBtn.style.display = "none";
+
+      const hideBspBtn = document.querySelector("#id_BspBtn");
+      hideBspBtn.style.display = "none";
+
+      const hideCongressBtn = document.querySelector("#id_CongressBtn");
+      hideCongressBtn.style.display = "none";
+
+      const hideAapBtn = document.querySelector("#id_AapBtn");
+      hideAapBtn.style.display = "none";
+
+      // coding for web3
+      const web3 = new Web3(
+        new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545")
+      );
+      const abi = [
+	{
+		"inputs": [],
+		"name": "aap",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "bjp",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "bsp",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "congress",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "shivSena",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "voteSetterForAam",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "voteSetterForBjp",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "voteSetterForBsp",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "voteSetterForCongress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "voteSetterForShivSena",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+];
+
+      // changer deployed address here
+      const addr = "0xCE9110724217C7101Df19cf02c15cBc45c0F7579";
+      // change the adcount no. here
+      const etherAccount = "0x4b970e77254D44B1f609477f76D8CF81E0907498";
+      const contract = new web3.eth.Contract(abi, addr);
+
+      // votter buttons of the respected parties
+      const shivSenaVoter = document.querySelector("#id_shivSenaBtn");
+      const bjpVotter = document.querySelector("#id_BjpBtn");
+      const bspVotter = document.querySelector("#id_BspBtn");
+      const congressVotter = document.querySelector("#id_CongressBtn");
+      const aapVotter = document.querySelector("#id_AapBtn");
+
+      // shiv sena funtion
+      shivSenaVoter.addEventListener("click", () => {
+        console.log("Successfully Votted for Shiv Sena");
+        contract.methods
+          .voteSetterForShivSena()
+          .send({ from: etherAccount, gas: 5000000 });
+      });
+
+      // bjp funtion
+      bjpVotter.addEventListener("click", () => {
+        console.log("Successfully Votted for BJP");
+        contract.methods
+          .voteSetterForBjp()
+          .send({ from: etherAccount, gas: 5000000 });
+      });
+
+      // bsp funtion
+      bspVotter.addEventListener("click", () => {
+        console.log("Successfully Votted for BSP");
+        contract.methods
+          .voteSetterForBsp()
+          .send({ from: etherAccount, gas: 5000000 });
+      });
+
+      // congress funtion
+      congressVotter.addEventListener("click", () => {
+        console.log("Successfully Votted for Congress");
+        contract.methods
+          .voteSetterForCongress()
+          .send({ from: etherAccount, gas: 5000000 });
+      });
+
+      // aam aadmi party funtion
+      aapVotter.addEventListener("click", () => {
+        console.log("Successfully Votted for Aam Aadmi Party");
+        contract.methods
+          .voteSetterForAam()
+          .send({ from: etherAccount, gas: 5000000 });
+      });
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- signup js file -->
+    <script src="signUp.js"></script>
+
+    <!-- login js file -->
+    <script src="login.js"></script>
+  </body>
+</html>
