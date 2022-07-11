@@ -1,4 +1,4 @@
-# Online-Voting-System-Using-Web3
+# Online-Voting-System-Using-BlockChain
 
 # To run this project
 
