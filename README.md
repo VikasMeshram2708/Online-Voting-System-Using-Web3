@@ -2,7 +2,7 @@
 
 # To run this project
 
-1. Open Google Chroem Browser
+1. Open Google Chrome Browser
 2. Open Ganache - Local BlockChain Simulator.
 3. Open remic IDE in Chrome Broswer ( https://remix.ethereum.org/ )
 4. Make a file and name it elections.sol
